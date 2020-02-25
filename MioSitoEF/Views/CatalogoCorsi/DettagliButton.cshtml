@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "DettagliButton";
+}
+
+@using MioSitoEF.Models.ViewModel
+
+@model CourseDetailViewModel
+
+
+<div class="container">
+
+    <div class="row align-items-center my-5">
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">@Model.Title</h1>
+            <p>@Model.Description</p>
+            <a class="btn btn-outline-primary"
+               asp-controller="CatalogoCorsi"
+               asp-action="Rating"
+               asp-route-id="@Model.Id">Guarda la Valutazione</a>
+        </div>
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="@Model.ImagePath" alt="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Catalogo";
+}
+
+@using MioSitoEF.Models.ViewModel
+
+@model List<CourseDetailViewModel>
+
+
+<h1>Catalogo corsi</h1>
+
+@*<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Title.." title="Titolo del Corso">*@
+
+<table id="myTable" data-paging="true" data-filtering="true" data-sorting="true" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="th-sm">
+                Title
+            </th>
+            <th class="th-sm">
+                Image
+            </th>
+            <th class="th-sm">
+                Full Price
+            </th>
+            <th class="th-sm">
+                Current Price
+            </th>
+            <th class="th-sm">
+                Rating
+            </th>
+            <th class="th-sm">
+                Dettagli
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CourseDetailViewModel x in Model)
+        {
+
+            <tr>
+                <td>@x.Title</td>
+                <td><img src="@x.ImagePath" class="immagine" height="70" /></td>
+                <td><del style="background-color:red">@x.FullPrice</del></td>
+                <td><p style="background-color:green">@x.CurrentPrice</p></td>
+                <td>@string.Format("{0:0.00}", x.Rating)</td>
+                <td>
+                    <a class="btn btn-outline-primary"
+                       asp-controller="CatalogoCorsi"
+                       asp-action="DettagliButton"
+                       asp-route-id="@x.Id">Dettagli</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<br />
+<a class="btn btn-outline-success btn-lg btn-block"
+   asp-controller="CatalogoCorsi"
+   asp-action="BestCourses">Scopri i corsi con rating più Alto!</a>
+
+<a class="btn btn-outline-danger btn-lg btn-block"
+   asp-controller="CatalogoCorsi"
+   asp-action="WorstCourses">Scopri i corsi con rating più Basso!</a>

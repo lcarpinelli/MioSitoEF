@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "WorstCourses";
+}
+@using MioSitoEF.Models.ViewModel
+@model List<CourseDetailViewModel>
+
+<h1 align="center">Worst Courses</h1>
+
+@foreach (CourseDetailViewModel x in Model)
+{
+    <div class="row md-3 divMax">
+        <div class="col-md-3 divImg"><img src="@x.ImagePath" class="immagine" height="100" /> </div>
+        <div class="col-md-3">@x.Title</div>
+        <div class="col-md-3">@string.Format("{0:0.00}", x.Rating)</div>
+        <div class="col-md-3">
+            <a class="btn btn-outline-primary"
+               asp-controller="CatalogoCorsi"
+               asp-action="DettagliButton"
+               asp-route-id="@x.Id">Dettagli</a>
+        </div>
+    </div>
+}
